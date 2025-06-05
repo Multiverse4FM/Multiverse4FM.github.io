@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/multiverse-logo.png" rel="icon">
+  <link href="assets/img/multiverse-logo.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vZTG0u8qgiA0Yc88kaFx5XmsnJ+P2ZmMpD5dDxVBiFSxGpLwUM6bsk77jhKt620x"
+    crossorigin="anonymous"
+  />
+
+  <!-- 2. KaTeX JS -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-DWrYn0xK2NWYqnJI22OhaCFAUKy70qWUePxj+cN1wRFnk5oIMBr5MhcgjvZB1b0I"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- 3. Auto-render extension (to parse delimiters) -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-w1Uxy7pF4uAfw6mvtb8+swQXt0rOvcoAl89smhcoebvEroKp4uLX6L+Mgd0KGfKt"
+    crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      // TeX delimiters to look for
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ]
+    })"
+  ></script>
+
+  <!-- =======================================================
+  * Template Name: TheEvent
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center ">
+    <div class="container-fluid container-xxl d-flex align-items-center">
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#abstract">Abstract</a></li>
+          <li><a class="nav-link scrollto" href="#1k">Multiverse 1K</a></li>
+          <li><a class="nav-link scrollto" href="#evaluation">Multiverse Evaluation</a></li>
+          <li><a class="nav-link scrollto" href="#build">How to Build a Multiverse Model</a></li>
+          <li><a class="nav-link scrollto" href="#organizers">Organizers</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+      <h1 class="mb-4 pb-0" style="font-size: 33px;">Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation</h1>
+      <!-- <h2 class="mb-4 pb-0" style="color: #fff;"><b>Advances in Sequence modeling from Algorithmic Perspectives</b></h2> -->
+      <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
+      <a href="#about" class="about-btn scrollto">About The Event</a> -->
+      <div class="hero-authors mb-2" line-height:1.4; text-align:center;">
+        <a href="https://xinyuyang.me/" target="_blank" rel="noopener">
+          Xinyu Yang<sup>1*</sup>
+        </a>
+        <a href="https://oasis-git.github.io/" target="_blank" rel="noopener">
+          Yuwei An<sup>1*</sup>
+        </a>
+        <a href="https://scholar.google.com/citations?user=_gu0xHYAAAAJ&hl=en" target="_blank" rel="noopener">
+          Hongyi Liu<sup>1</sup>
+        </a>
+        <a href="https://tqchen.com/" target="_blank" rel="noopener">
+          Tianqi Chen<sup>1,2</sup>
+        </a>
+        <a href="https://www.andrew.cmu.edu/user/beidic/" target="_blank" rel="noopener">
+          Beidi Chen<sup>1</sup>
+        </a>
+      </div>
+      <div class="hero-affiliation mb-4" style="color: #cecbcb; font-size: 22px; text-align:center;">
+        <sup>1</sup>Carnegie Mellon University,  <sup>2</sup>NVIDIA
+      </div>
+
+      <div class="hero-buttons" style="text-align:center; margin-top: 1rem;">
+        <a href="path/to/paper.pdf" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
+          <i class="bi bi-file-pdf"></i> Paper
+        </a>
+        <a href="https://github.com/your‐repo" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
+          <i class="bi bi-github"></i> Code
+        </a>
+        <a href="path/to/data.zip" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
+          <img src="assets/img/huggingface.svg" alt="HuggingFace" style="height: 20px; width: auto; margin-right: 5px; vertical-align: middle;"> HuggingFace
+        </a>
+      </div>
+
+      <div class="hero-buttons" style="text-align:center; margin-top: 1rem;">
+        <a href="path/to/paper.pdf" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
+          <i class="bi bi-database"></i> Multiverse 1K
+        </a>
+        <a href="https://github.com/your‐repo" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
+          <i class="bi bi-file-earmark-code"></i> Multiverse 32B
+        </a>
+        <a href="path/to/data.zip" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
+          <i class="bi bi-wrench"></i> Multiverse Engine
+        </a>
+      </div>
+
+      <!-- Video Demo Section -->
+      <div class="video-container" style="margin-top: 2rem; text-align: center; position: relative;">
+        <div style="position: absolute; top: 10px; right: 16%; background-color: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 4px; font-size: 16px; z-index: 1;">
+          Multiverse Demo
+        </div>
+        <video width="70%" controls style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <source src="assets/video/demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+
+  <main id="main">
+
+    <!-- ======= Abstract Section ======= -->
+    <section id="abstract">
+      <div class="container position-relative" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>Abstract</h2>
+            <p style="font-size: 16px;">
+              <p>
+                Autoregressive Large Language Models (AR-LLMs) frequently exhibit implicit parallelism in sequential generation. Inspired by this, we introduce <strong>Multiverse</strong>, a new generative model that enables natively parallel generation. Multiverse internalizes a MapReduce paradigm, generating automatically through three stages: (i) a <code>Map</code> stage for adaptive task decomposition, (ii) a <code>Process</code> stage for parallel subtask execution, and (iii) a <code>Reduce</code> stage for lossless result synthesis.
+              </p>
+              
+              <p>
+                Next, we build a real-world Multiverse reasoning model with co-design of data, algorithm, and system, enabling rapid and seamless transfer from frontier AR-LLMs. Starting from sequential reasoning chains, we create <em>Multiverse 1K</em> by converting them into structured training data using an automated LLM-assisted pipeline, avoiding costly human annotations.
+              </p>
+              
+              <p>
+                Algorithmically, we design <em>Multiverse Attention</em> to separate parallel reasoning steps while keeping compatibility with causal attention for efficient training. Systematically, we implement <em>Multiverse Engine</em> to enable parallel inference. It features a dedicated scheduler that dynamically switches between sequential and parallel generation, triggered directly by the model.
+              </p>
+              
+              <p>
+                After a 3-hour fine-tuning with 1K examples, <em>our Multiverse-32B stands as the only non-AR model achieving performance on par with leading AR-LLMs of the same scale</em>, evidenced by AIME24 &amp; 25 scores of 52% and 43%, respectively. Moreover, our budget control experiments show that Multiverse-3B exhibits superior scaling, outperforming AR-LLMs by 1.87 % on average using the same context length. Such parallel scaling further leads to practical efficiency gain, achieving up to 2× speedup across varying batch sizes.
+              </p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Abstract Section -->
+    
+
+
+    </section><section id="multiverse-1k" class="section-with-bg">
+      <div class="container" data-aos="fade-up">
+          <div class="section-header">
+              <h2>Multiverse 1K</h2>
+              <p>Explore the parallelism in the training corpus</p>
+          </div>
+          <div class="row">
+              <div class="col-lg-12">
+                  <p>Multiverse-1K is a new generation of Multiverse model, which is trained on 1K examples. Select one id to show the xml.</p>
+                  <div style="margin-bottom: 20px;">
+                      <select id="xml-selector" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                          <option value="">Select one example</option>
+                      </select>
+                      <button id="view-button" style="padding: 10px 20px; border-radius: 5px; border: none; background-color: #f82249; color: white; cursor: pointer;">View</button>
+                  </div>
+                  <div id="xml-display-container">
+                      </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+    <section id="evaluation" class="section-with-bg">
+    
+    <style>
+      .steps-container {
+        display: flex; /* Makes the steps align horizontally */
+        justify-content: center; /* Centers them */
+        align-items: flex-start; /* Aligns items at the top */
+        gap: 50px; /* Space between each column */
+        padding: 20px 20px 50px 20px;
+        max-width: 80%;
+        margin: auto;
+    }
+
+    .step {
+        flex: 1;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    .step-icon {
+        font-size: 50px;
+        color: #7b3fa5c3;
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 1000px) {
+      .steps-container {
+          flex-direction: column; /* Stacks them vertically on small screens */
+          align-items: center;
+      }
+
+      .step {
+          max-width: 90%;
+      }
+    }
+    </style>
+
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Multiverse Evaluation</h2>
+          <p>What we can achieve with Multiverse</p>
+        </div>
+        
+      
+        <div class="row mb-5">
+          <div class="col-lg-12">
+            <h3>Reasoning Performance</h3>
+            <div class="table-responsive">
+              <table class="table table-bordered text-center" style="font-size: 0.9rem;">
+                  <thead class="table-light">
+                      <tr>
+                          <th rowspan="2" class="align-middle">Model / Metric</th>
+                          <th colspan="2">AIME24</th>
+                          <th colspan="2">AIME25</th>
+                          <th colspan="2">MATH500</th>
+                          <th colspan="2">GPQA-Diamond</th>
+                      </tr>
+                      <tr>
+                          <th>pass@1</th>
+                          <th># parallel</th>
+                          <th>pass@1</th>
+                          <th># parallel</th>
+                          <th>pass@1</th>
+                          <th># parallel</th>
+                          <th>pass@1</th>
+                          <th># parallel</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                        <tr style="color: #888;">
+                          <td>s1-32B</td>
+                          <td>35.4</td>
+                          <td>1.00</td>
+                          <td>25.8</td>
+                          <td>1.00</td>
+                          <td>88.6</td>
+                          <td>1.00</td>
+                          <td>48.0</td>
+                          <td>1.00</td>
+                      </tr>
+                      <tr style="color: #888;">
+                          <td>s1.1-32B</td>
+                          <td>52.9</td>
+                          <td>1.00</td>
+                          <td>41.7</td>
+                          <td>1.00</td>
+                          <td>93.4</td>
+                          <td>1.00</td>
+                          <td>60.3</td>
+                          <td>1.00</td>
+                      </tr>
+                      <tr>
+                        <td colspan="9" style="padding: 0; border-bottom: 2px solid black;"></td>
+                      </tr>
+                      <tr>
+                          <td>Qwen2.5-32B-Instruct</td>
+                          <td>15.8</td>
+                          <td>1.00</td>
+                          <td>10.4</td>
+                          <td>1.00</td>
+                          <td>80.4</td>
+                          <td>1.00</td>
+                          <td>47.0</td>
+                          <td>1.00</td>
+                      </tr>
+                      <tr>
+                          <td>Autoregressive-32B</td>
+                          <td><u>51.3</u></td>
+                          <td>1.00</td>
+                          <td><strong>42.9</strong></td>
+                          <td>1.0</td>
+                          <td><strong>92.8</strong></td>
+                          <td>1.00</td>
+                          <td>61.6</td>
+                          <td>1.00</td>
+                      </tr>
+                      <tr>
+                          <td><strong>Multiverse-32B-zero</strong></td>
+                          <td>52.1</td>
+                          <td>1.07</td>
+                          <td>44.2</td>
+                          <td>1.05</td>
+                          <td>91.8</td>
+                          <td>1.05</td>
+                          <td><strong>62.1</strong></td>
+                          <td>1.06</td>
+                      </tr>
+                      <tr>
+                          <td><strong>Multiverse-32B</strong></td>
+                          <td><strong>52.9</strong></td>
+                          <td>1.24</td>
+                          <td><u>44.2</u></td>
+                          <td>1.18</td>
+                          <td><u>92.4</u></td>
+                          <td>1.15</td>
+                          <td><u>61.7</u></td>
+                          <td>1.17</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <p style="font-size: 16px;">
+            TODO: 
+          </p>
+          </div>
+        </div>
+    
+        <div class="row mb-5">
+          <div class="col-12">
+              <!-- <h3 style="text-align: left; font-weight: 600; color: #0e1b4d; margin-bottom: 15px;">Budget Control</h3> -->
+              <h3>Scaling</h3>
+              <div class="row align-items-center">
+                  <div class="col-md-6 d-flex flex-column align-items-center">
+                    <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">GPQA-Diamond Scaling</p>
+                    <a href="assets/img/linear-1.png" target="_blank" style="width: 90%;">
+                        <img src="assets/img/linear-1.png" alt="Budget Control Figure 1" class="img-fluid" style="border: 1px solid #ddd; border-radius: 5px;">
+                    </a>
+                  </div>
+                  <div class="col-md-6 d-flex flex-column align-items-center">
+                      <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">MATH500 Scaling</p>
+                      <a href="assets/img/linear-2.png" target="_blank" style="width: 90%;">
+                          <img src="assets/img/linear-2.png" alt="Budget Control Figure 2" class="img-fluid" style="border: 1px solid #ddd; border-radius: 5px;">
+                      </a>
+                  </div>
+              </div>
+              <p style="font-size: 16px;">
+                TODO: 
+              </p>
+          </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-12">
+            <h3>Efficiency Performance</h3>
+            <div class="row align-items-center">
+                <div class="col-md-6 d-flex flex-column align-items-center">
+                    <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">Speedup vs. Parallelsim</p>
+                    <a href="assets/img/latency.png" target="_blank" style="width: 90%; display: block;">
+                        <img src="assets/img/latency.png" alt="Efficiency Figure 1" class="img-fluid" style="border: 1px solid #ddd; border-radius: 5px;">
+                    </a>
+                </div>
+                <div class="col-md-6 d-flex flex-column align-items-center">
+                    <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">Throughput vs. Parallelsim</p>
+                    <a href="assets/img/speedup.png" target="_blank" style="width: 90%; display: block;">
+                        <img src="assets/img/speedup.png" alt="Efficiency Figure 2" class="img-fluid" style="border: 1px solid #ddd; border-radius: 5px;">
+                    </a>
+                </div>
+                <p style="font-size: 16px;">
+                  TODO: 
+                </p>
+            </div>
+        </div>
+    </div>
+
+    </section>
+    <!-- ======= How to Build Multiverse Model Section ======= -->
+    <section id="how-to-build" class="section-with-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>How to Build Multiverse Model</h2>
+          <p>Understanding the co-design of data, algorithm, and system.</p>
+        </div>
+
+        <!-- Data Subsection -->
+        <div class="row subsection-row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12">
+            <h3 class="subsection-title">Data: Multiverse 1K</h3>
+          </div>
+          <div class="col-lg-10 offset-lg-1 text-center mb-4">
+            <img src="assets/img/data.png" class="img-fluid rounded" alt="Multiverse 1K Data Curation Pipeline" style="width: 80%;">
+            <p class="mt-2 fst-italic">Figure (a): Multiverse 1K is automatically generated using an LLM-assisted data curation pipeline.</p>
+          </div>
+          <div class="col-lg-10 offset-lg-1">
+            <p>
+              To address the absence of MapReduce structures in existing sequential reasoning data, we introduce <strong>Multiverse-1K</strong>. While these long CoT trajectories often inherently contain such structures, explicitly generating them is difficult. Thus, we develop an automated LLM-assisted pipeline that transforms sequential reasoning chains into parallel MapReduce structures. This conversion is guided by a five-stage prompting protocol powered by Gemini 2.5 Pro.
+            </p>
+            <p>
+              <strong>Generating a Summary Tree.</strong> First, we iteratively decompose and outline the original reasoning chain into a two-level tree structure. In the first round, the entire reasoning chain is broken down into multiple steps. In the second round, each step is examined by the LLM for further decomposition into substeps. Each resulting step or substep will be labeled and outlined with a concise description.
+            </p>
+            <p>
+              <strong>Identifying Parallel Groups.</strong> Second, we instruct the LLM to analyze each reasoning step, identifying which steps or groups of steps can be executed in parallel without violating logical dependencies.
+            </p>
+            <p>
+              <strong>Reformating into Parallel Structures.</strong> Third, the summary tree is converted into a parallel structure based on the previous analysis. To explicitly signal parallel execution, parallelizable steps or step groups are enclosed within the control tags <code>&lt;Parallel&gt;</code> and <code>&lt;/Parallel&gt;</code>, forming a parallel block.
+            </p>
+            <p>
+              <strong>Refilling Original Details.</strong> Fourth, we prompt the LLM to repopulate the detailed content for each step and substep. This is achieved by retrieving and copying the related original reasoning trajectories.
+            </p>
+            <p>
+              <strong>Adding MapReduce Structures.</strong> Finally, we further convert the parallel structures into MapReduce structures. For each parallel block, the LLM generates both the <code>Map</code> and <code>Reduce</code> stages by outlining the specific goals and results for each individual path. Moreover, all paths are rewritten to avoid words implying sequential relations (e.g., similarly) and to prevent including or referencing content from other paths, thereby ensuring each path's completeness and independence.
+            </p>
+            <p>
+              To further refine our data, two supplementary validation stages are incorporated. After the fourth stage, a content check will filter out data if its edit distance ratio is above 0.2. Next, after the fifth stage, a grammar check will confirm strict adherence to our MapReduce structures. Data failing either case will be iteratively regenerated through our pipeline until both standards are met. The application of this automated pipeline to the s1K-1.1 dataset has yielded Multiverse 1K, a new dataset consisting of 1,000 high-quality, structured reasoning trajectories across a range of math and science problems.
+            </p>
+          </div>
+        </div>
+
+        <hr class="subsection-divider">
+
+        <!-- Algorithm Subsection -->
+        <div class="row subsection-row align-items-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-12">
+            <h3 class="subsection-title">Algorithm: Multiverse Attention</h3>
+          </div>
+          <div class="col-lg-5 offset-lg-1 text-center">
+            <img src="assets/img/alg.png" class="img-fluid rounded mb-3" alt="Multiverse Attention Mechanism" style="width: 80%;">
+            <p class="mt-2 fst-italic">Figure (b): Multiverse Attention mechanism.</p>
+          </div>
+          <div class="col-lg-5">
+            <p>
+              Next, we introduce <strong>Multiverse Attention</strong> to replace the causal attention in AR-LLMs.  
+              Causal attention computes the i-th token’s output with query 
+              <code>q<sub>i</sub></code>, and keys <code>k<sub>j</sub></code>, values <code>v<sub>j</sub></code> 
+              from positions <code>j &le; i</code>.
+            </p>
+            <p>
+              However, this formulation poses challenges for conceptual parallel generation, as later paths rely on both (i) the key-value (KV) pairs and (ii) the positional indices produced by earlier paths. To address this, we modify both the attention masks and position indices following APE. In Multiverse Attention, each path within the same block starts from the same position and executes independently without accessing others. During the <code>Reduce</code> stage, all paths converge to the same position equal to the maximum position reached across paths, regardless of their individual lengths.
+            </p>
+            <p>
+              Due to its similarity with causal attention, Multiverse Attention supports efficient training since (i) it preserves training parallelism, and (ii) it can be seamlessly adapted via fine-tuning on a few samples.
+            </p>
+            <!-- Add more paragraphs or details as needed -->
+          </div>
+        </div>
+
+        <hr class="subsection-divider">
+
+        <!-- Engine Subsection -->
+        <div class="row subsection-row align-items-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-12">
+            <h3 class="subsection-title">System: Multiverse Engine</h3>
+          </div>
+          <div class="col-lg-5 offset-lg-1 text-center">
+            <img src="assets/img/engine.png" class="img-fluid rounded mb-3" alt="Multiverse Engine Architecture">
+             <p class="mt-2 fst-italic">Figure (c): Multiverse Engine architecture.</p>
+          </div>
+          <div class="col-lg-5">
+            <p>
+              To enable truly parallel generation in practical deployments, we introduce <strong>Multiverse Engine</strong>, an extension of existing inference engines designed for AR models. Specifically, we employ SGLang due to its support for continuous batching and radix attention. These features allow dynamic batch scheduling and flexible KV-cache reuse, two scenarios frequently occur in the <code>Map</code> and <code>Reduce</code> stages.
+            </p>
+            <p>
+              The <code>Map</code> stage is automatically triggered when a <code>&lt;Parallel&gt;</code> token is generated. Next, the scheduler counts the number of <code>&lt;Outline&gt;</code> encountered to decide the degree of parallelism until reaching <code>&lt;/Goal&gt;</code>. Based on this count, the engine creates multiple paths executed in parallel as distinct samples within the same batch. Leveraging radix attention, these paths share the prefix KV cache from the current context. Each path is identified and initiated with "<code>&lt;Path&gt; i</code>" according to its order <code>i</code> in the <code>&lt;Outline&gt;</code> list. After prefilling, all paths are added to the decoding queue for parallel generation. When a path finishes, either by reaching <code>&lt;/Path&gt;</code> or the maximum length, it enters a "zombie" state that releases all resources and waits for the completion of other paths before continuing.
+            </p>
+            <p>
+              The <code>Reduce</code> stage begins once all processing paths have completed. In this stage, the engine merges the KV states from all paths along with the preceding context to form a new sequence. Thanks to the flexible memory layout of the radix cache, indices of KV cache can be seamlessly merged without any padding, thereby avoiding both physical data copying and subsequent redundant computation. The token <code>&lt;Conclusion&gt;</code>, prefixed by this combined KV cache, is then added to the prefilling queue. Once finished, the task is moved to the decoding queue to resume generation along the new sequence.
+            </p>
+            <!-- Add more paragraphs or details as needed -->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End How to Build Multiverse Model Section -->
+    
+    
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <!-- <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <img src="assets/img/logo.png" alt="TheEvenet">
+            <p>In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.</p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div> -->
+
+    <div class="container">
+      <div class="copyright">
+        <!-- &copy; Copyright <strong>TheEvent</strong>. All Rights Reserved -->
+      </div>
+      <div class="credits">
+        <!--
+        All the links in the footer should remain intact.
+        You can delete the links only if you purchased the pro version.
+        Licensing information: https://bootstrapmade.com/license/
+        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=TheEvent
+      -->
+      Template adopted from <a href="https://set-llm.github.io/">SeT LLM @ ICLR 2024</a> and  <a href="https://flann.super.site/">FLaNN Seminars</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
