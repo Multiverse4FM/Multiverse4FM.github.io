@@ -251,7 +251,9 @@
       currentHtml = currentHtml.replace(
         /&lt;Path&gt;([\s\S]*?)&lt;\/Path&gt;/g,
         (match, pathContent) => {
-          return `<div class="path-content-block">&lt;!--TEMP_PATH_OPEN_INSIDE--&gt;${pathContent}&lt;!--TEMP_PATH_CLOSE_INSIDE--&gt;</div>`;
+          // Trim whitespace (including newlines) from the start and end of pathContent
+          const trimmedPathContent = pathContent.trim(); 
+          return `<div class="path-content-block">&lt;!--TEMP_PATH_OPEN_INSIDE--&gt;${trimmedPathContent}&lt;!--TEMP_PATH_CLOSE_INSIDE--&gt;</div>`;
         }
       );
       iterations++;
@@ -280,7 +282,7 @@
         generationDiv.className = 'generation';
         
         let htmlString = escapeHTML(rawText);
-        htmlString = htmlString.replace(/&lt;Think&gt;/g, '').replace(/&lt;\/Think&gt;/g, '');
+        // htmlString = htmlString.replace(/&lt;Think&gt;/g, '').replace(/&lt;\/Think&gt;/g, '');
         
         htmlString = iterativePathFormatter(htmlString); // Process Path blocks
         

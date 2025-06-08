@@ -1847,11 +1847,11 @@ h6 {
 .tag-highlight {
   font-weight: bold;
 }
-.tag-parallel { color: #82aaff; /* Blue */ }
-.tag-path { color: #c3e88d;     /* Light Green */ }
-.tag-goal { color: #ffcb6b;       /* Yellow */ }
-.tag-conclusion { color: #f07178; /* Red */ }
-.tag-outline { color: #c792ea;  /* Magenta */ }
+.tag-parallel { color: #c792ea; /* Blue */ }
+.tag-path { color: #82aaff;     /* Light Green */ }
+.tag-goal { color: #c3e88d;       /* Yellow */ }
+.tag-conclusion { color: #ffcb6b; /* Red */ }
+.tag-outline { color: #f07178;  /* Magenta */ }
 
 /* Replace the existing rules above with these updated ones: */
 
@@ -1867,7 +1867,7 @@ h6 {
   padding-bottom: 0.25em; /* Reduced from 0.75em */
   padding-left: 0.75em;   /* Kept for side content, aligns with border */
 
-  background-color: #33384a; 
+  background-color: #454d76; 
   border-radius: 4px;
   margin-left: 20px; 
   border-left: 5px solid #c3e88d; /* Your chosen left border color */
@@ -1877,21 +1877,21 @@ h6 {
 /* Opening Path tag span - this controls the gap you asked about */
 .path-content-block > .path-tag-open {
   display: block;       /* Keeps <Path> on its own line */
-  margin-bottom: 0.2em; /* ADJUST THIS VALUE: Drastically reduced for a smaller gap. 
+  margin-bottom: 0; /* ADJUST THIS VALUE: Drastically reduced for a smaller gap. 
                            Try 0em for no extra margin, or a small px value like 2px. */
 }
 
 /* Closing Path tag span */
 .path-content-block > .path-tag-close {
   display: block;      /* Keeps </Path> on its own line */
-  margin-top: 0.2em;   /* ADJUST THIS VALUE: Reduced gap before the closing tag. */
+  margin-top: 0;   /* ADJUST THIS VALUE: Reduced gap before the closing tag. */
 }
 
 /* Nested path-content-block */
 .path-content-block .path-content-block {
   margin-left: 25px; 
-  background-color: #3F4458; /* Slightly different background for distinction */
-  border-left-color: #82aaff; /* Different border color for nested paths */
+  background-color: #4a5b99; /* Slightly different background for distinction */
+  border-left-color: #4a5b99; /* Different border color for nested paths */
   
   /* Consistent reduced padding for nested blocks */
   padding-top: 0.25em;
