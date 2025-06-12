@@ -170,11 +170,11 @@
       </div>
 
       <div class="hero-buttons" style="text-align:center; margin-top: 1rem;">
-        <a href="path/to/paper.pdf" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
-          <i class="bi bi-database"></i> Multiverse 1K
+        <a href="https://huggingface.co/datasets/Multiverse4FM/Multiverse-1K" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
+          <i class="bi bi-database"></i> Multiverse-1K
         </a>
         <a href="https://github.com/your‐repo" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
-          <i class="bi bi-file-earmark-code"></i> Multiverse 32B
+          <i class="bi bi-file-earmark-code"></i> Multiverse-32B
         </a>
         <a href="path/to/data.zip" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
           <i class="bi bi-wrench"></i> Multiverse Engine
@@ -214,30 +214,6 @@
         </div>
       </div>
     </section><!-- End Abstract Section -->
-    
-
-
-    </section><section id="multiverse-1k" class="section-with-bg">
-      <div class="container" data-aos="fade-up">
-          <div class="section-header">
-              <h2>Multiverse 1K</h2>
-              <p>Explore the parallelism in the training corpus</p>
-          </div>
-          <div class="row">
-              <div class="col-lg-12">
-                  <p>Multiverse-1K is a new generation of Multiverse model, which is trained on 1K examples. Select one id to show the xml.</p>
-                  <div style="margin-bottom: 20px;">
-                      <select id="xml-selector" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                          <option value="">Select one example</option>
-                      </select>
-                      <button id="view-button" style="padding: 10px 20px; border-radius: 5px; border: none; background-color: #f82249; color: white; cursor: pointer;">View</button>
-                  </div>
-                  <div id="xml-display-container">
-                      </div>
-              </div>
-          </div>
-      </div>
-    </section>
 
     <section id="evaluation" class="section-with-bg">
     
@@ -434,6 +410,29 @@
     </div>
 
     </section>
+
+  </section><section id="multiverse-1k" class="section-with-bg">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Multiverse 1K</h2>
+            <p>Explore the parallelism in the training corpus</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Multiverse-1K is a new generation of Multiverse model, which is trained on 1K examples. Select one id to show the xml.</p>
+                <div style="margin-bottom: 20px;">
+                    <select id="xml-selector" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                        <option value="">Select one example</option>
+                    </select>
+                    <button id="view-button" class="btn btn-primary">View</button>
+                </div>
+                <div id="xml-display-container" class="border rounded p-3 bg-light" style="max-height: 400px; overflow-y: auto;">
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  
     <!-- ======= How to Build Multiverse Model Section ======= -->
     <section id="how-to-build" class="section-with-bg">
       <div class="container" data-aos="fade-up">
