@@ -355,4 +355,30 @@
     }
   }
 
+  /* -----------------------------------------------------------
+   * JS dynamic adjustment removed - using CSS fixed values instead
+   * ---------------------------------------------------------*/
+  // const adjustHeroOffset = () => {
+  //   const header = select('#header');
+  //   const heroContainer = select('#hero .hero-container');
+  //   if (header && heroContainer) {
+  //     // Only apply dynamic adjustment on desktop screens (>991px)
+  //     if (window.innerWidth > 991) {
+  //       const offset = header.offsetHeight + 50; // buffer for desktop
+  //       heroContainer.style.paddingTop = `${offset}px`;
+  //     } else {
+  //       // Let CSS handle mobile spacing (110px)
+  //       heroContainer.style.paddingTop = '';
+  //     }
+  //   }
+  // };
+  // window.addEventListener('load', adjustHeroOffset);
+  // window.addEventListener('resize', adjustHeroOffset);
+
+  // // Recalculate on scroll (header shrinks/expands) 
+  // onscroll(document, adjustHeroOffset);
+
+  // // Also recalc immediately after mobile nav toggle
+  // on('click', '.mobile-nav-toggle', adjustHeroOffset);
+
 })()

@@ -148,12 +148,60 @@ h6 {
   right: 0;
   transition: all 0.5s;
   z-index: 997;
+  min-height: 70px; /* minimum height even when navbar is hidden */
 }
 
 #header.header-scrolled,
 #header.header-inner {
   background: rgba(5, 15, 35, 0.98);
   height: 70px;
+}
+
+@media (min-width: 992px) {
+  #header {
+    min-height: 90px; /* larger minimum on desktop */
+  }
+}
+
+/* General header container layout for all screen sizes */
+#header .container-fluid,
+#header .container-xxl {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+/* Simplified approach: directly position logo with consistent left margin */
+#header #logo {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-left: 30px !important; /* Direct left margin for consistent positioning */
+}
+
+/* Add right margin to navbar to balance the layout */
+#header .navbar {
+  margin-right: 30px !important; /* Match the logo's left margin */
+}
+
+/* Mobile nav toggle also needs right margin */
+#header .mobile-nav-toggle {
+  margin-right: 0px !important; /* Even smaller margin for mobile */
+}
+
+@media (max-width: 991px) {
+  #header #logo {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1000; /* Ensure it's above other elements */
+    margin-left: 30px !important;
+  }
 }
 
 #header #logo h1 {
@@ -478,11 +526,21 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 120vh;
+  min-height: 120vh; /* Change from fixed height to minimum height */
   background: url(../img/multiverse-3.png) top center;
   background-size: cover;
   overflow: hidden;
   position: relative;
+  padding-bottom: 1rem; /* Reduced bottom padding */
+}
+
+/* On narrow screens, allow hero to grow with content */
+@media (max-width: 768px) {
+  #hero {
+    min-height: 100vh; /* Smaller minimum height on mobile */
+    height: auto; /* Allow height to grow with content */
+    padding-bottom: 0.5rem; /* Even smaller bottom padding on mobile */
+  }
 }
 
 @media (min-width: 1024px) {
@@ -492,17 +550,24 @@ h6 {
 }
 
 #hero .hero-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  top: 90px;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 0 15px;
+  max-width: 1200px;   /* keep content column narrow on wide screens */
+  padding-left: 20px;  /* breathing room */
+  padding-right: 20px;
+  margin: 0 auto;      /* center horizontally */
+  display: flex;            /* restore flexbox layout */
+  flex-direction: column;   /* vertical stack */
+  align-items: center;      /* horizontally center children */
+  text-align: center;       /* center inline content */
+  position: relative !important;
+  top: 0 !important;
+  bottom: auto !important;
+  justify-content: flex-start;
+}
+
+@media (max-width: 991px) {
+  #hero .hero-container {
+    padding-top: 110px;        /* proportionally larger on small screens */
+  }
 }
 
 #hero .hero-authors {
@@ -515,6 +580,8 @@ h6 {
 #hero .hero-authors a {
   color: #a5cbf7;
   text-decoration: none;
+  white-space: nowrap; /* Prevent individual author names from breaking */
+  display: inline-block; /* Ensure proper wrapping behavior */
 }
 
 #hero .hero-buttons {
@@ -550,8 +617,8 @@ h6 {
 }
 
 @media (max-width: 991px) {
-  #hero .hero-container {
-    top: 70px;
+  #hero h1 {
+    font-size: 34px;
   }
 }
 
@@ -1899,3 +1966,99 @@ h6 {
   padding-right: 0.75em; /* Keep side padding consistent */
   padding-left: 0.75em;
 }
+
+/*--------------------------------------------------------------
+# Responsive Fix: Prevent logo & nav overlap on medium screens
+# ------------------------------------------------------------
+# For viewport widths between 992px and 1200px we slightly
+# reduce logo size and navbar spacing.
+--------------------------------------------------------------*/
+@media (max-width: 1200px) and (min-width: 992px) {
+  /* Shrink logo text */
+  #header #logo h1 {
+    font-size: 28px;
+  }
+
+  /* Tighter spacing for nav items */
+  .navbar>ul>li {
+    padding: 10px 0 10px 6px; /* reduce left padding */
+  }
+
+  .navbar a,
+  .navbar a:focus {
+    font-size: 13px;          /* slightly smaller font */
+    padding: 6px 6px;         /* tighter horizontal padding */
+  }
+}
+
+/* Enable mobile nav earlier to avoid overlap entirely */
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .navbar ul {
+    display: none;
+  }
+}
+
+/*--------------------------------------------------------------
+# Anchor Offset for Fixed Header
+# ------------------------------------------------------------
+# Ensure section headings are not hidden behind the fixed
+# navigation bar when users click anchor links.
+--------------------------------------------------------------*/
+section[id] {
+  /* Enough to clear the desktop header (90px) plus a little spacing */
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 991px) {
+  /* Header shrinks to 70px on small screens */
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+}
+@media (min-width: 992px) {
+  /* Keep hero content at a stable position instead of vertical centering */
+  #hero .hero-container {
+    justify-content: flex-start; /* align items to top of the container */
+    padding-top: 110px;          /* increased spacing for desktop */
+  }
+}
+
+/* Ensure logo is always visible on all screen sizes */
+#header #logo {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 991px) {
+  #header #logo {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+}
+
+/* Fix video container spacing to prevent bottom cutoff */
+.video-container {
+  margin-bottom: 1.5rem !important; /* Reduced bottom spacing */
+}
+
+/* Video label positioning */
+.video-container > div {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important; /* Fixed distance from video edge */
+  background-color: rgba(0,0,0,0.7) !important;
+  color: white !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+  font-size: 14px !important;
+  z-index: 10 !important;
+  white-space: nowrap !important; /* Prevent text wrapping */
+}
+
