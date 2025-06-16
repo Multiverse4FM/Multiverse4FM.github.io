@@ -183,6 +183,29 @@
         width: 100% !important;
       }
     }
+    .side-by-side-scroll {
+        max-height: 450px;
+        overflow-y: auto;
+        padding-right: 15px; /* Adjust as needed for scrollbar spacing */
+    }
+
+    /* Optional: custom scrollbar styling */
+    .side-by-side-scroll::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .side-by-side-scroll::-webkit-scrollbar-track {
+        background: #f8f9fa;
+    }
+
+    .side-by-side-scroll::-webkit-scrollbar-thumb {
+        background: #ced4da;
+        border-radius: 4px;
+    }
+
+    .side-by-side-scroll::-webkit-scrollbar-thumb:hover {
+        background: #adb5bd;
+    }
   </style>
 
   <!-- =======================================================
@@ -209,8 +232,8 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#abstract">Abstract</a></li>
-          <li><a class="nav-link scrollto" href="#multiverse-1k">Multiverse 1K</a></li>
           <li><a class="nav-link scrollto" href="#evaluation">Multiverse Evaluation</a></li>
+          <li><a class="nav-link scrollto" href="#multiverse Training">Multiverse Training</a></li>
           <li><a class="nav-link scrollto" href="#how-to-build">How to Build a Multiverse Model</a></li>
 
           <li><a class="nav-link scrollto" href="#acknowledge">Acknowledgments</a></li>
@@ -251,7 +274,7 @@
       </div>
 
       <div class="hero-buttons" style="text-align:center; margin-top: 1rem;">
-        <a href="path/to/paper.pdf" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
+        <a href="https://arxiv.org/pdf/2506.09991" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
           <i class="bi bi-file-pdf"></i> Paper
         </a>
         <a href="https://github.com/Multiverse4FM" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
@@ -272,7 +295,7 @@
         <a href="https://github.com/your‐repo" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
           <i class="bi bi-file-earmark-code"></i> Multiverse-32B
         </a>
-        <a href="path/to/data.zip" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
+        <a href="https://huggingface.co/Multiverse4FM/Multiverse-32B" class="btn btn-primary mx-1" style="padding: 0.5rem 1.2rem; font-size: 16px;">
           <i class="bi bi-wrench"></i> Multiverse Engine
         </a>
       </div>
@@ -298,14 +321,22 @@
         <div class="row">
           <div class="col-lg-12">
             <h2>Abstract</h2>
-            <p style="font-size: 16px;">
+            <div style="font-size: 16px;">
               <p>
-                Autoregressive Large Language Models (AR-LLMs) frequently exhibit implicit parallelism in sequential generation. Inspired by this, we introduce <strong style="background: linear-gradient(45deg, #4ECDC4, #87CEEB, #96C93D, #FFA500); -webkit-background-clip: text; background-clip: text; color: transparent;">Multiverse</strong>, a new generative model that enables natively parallel generation. Multiverse internalizes a MapReduce paradigm, generating automatically through three stages: (i) a <code>Map</code> stage for adaptive task decomposition, (ii) a <code>Process</code> stage for parallel subtask execution, and (iii) a <code>Reduce</code> stage for lossless result synthesis.
-                Next, we build a real-world Multiverse reasoning model with co-design of data, algorithm, and system, enabling rapid and seamless transfer from frontier AR-LLMs. Starting from sequential reasoning chains, we create <em>Multiverse 1K</em> by converting them into structured training data using an automated LLM-assisted pipeline, avoiding costly human annotations.
-                Algorithmically, we design <em>Multiverse Attention</em> to separate parallel reasoning steps while keeping compatibility with causal attention for efficient training. Systematically, we implement <em>Multiverse Engine</em> to enable parallel inference. It features a dedicated scheduler that dynamically switches between sequential and parallel generation, triggered directly by the model.
-                After a 3-hour fine-tuning with 1K examples, <em>our Multiverse-32B stands as the only non-AR model achieving performance on par with leading AR-LLMs of the same scale</em>, evidenced by AIME24 &amp; 25 scores of 52% and 43%, respectively. Moreover, our budget control experiments show that Multiverse-3B exhibits superior scaling, outperforming AR-LLMs by 1.87 % on average using the same context length. Such parallel scaling further leads to practical efficiency gain, achieving up to 2× speedup across varying batch sizes.
+                This work introduce <strong style="background: linear-gradient(45deg, #4ECDC4, #87CEEB, #96C93D, #FFA500); -webkit-background-clip: text; background-clip: text; color: transparent;">Multiverse</strong>, a new generative modeling framework that enables natively parallel generation. Multiverse internalizes a MapReduce paradigm through three stages: (i) a <code>Map</code> stage for adaptive task splitting, (ii) a <code>Process</code> stage for parallel subtask execution, and (iii) a <code>Reduce</code> stage for lossless result merging.
               </p>
-            </p>
+              <p>
+                Next, we build a real-world Multiverse reasoning model with a co-design of data, algorithm, and system, enabling rapid and seamless transfer from frontier AR-LLMs:
+              </p>
+              <ul>
+                <li style="margin-bottom: 0.5rem;"><strong>Multiverse Curator:</strong> An automated LLM-assisted pipeline that converts sequential chains into Multiverse structures.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Multiverse Attention:</strong> A new attention mechanism that separates parallelizable branches while supporting efficient training.</li>
+                <li><strong>Multiverse Engine:</strong> An efficient generation engine that dynamically switches between sequential and parallel generation.</li>
+              </ul>
+              <p>
+                After a 3-hour fine-tuning with 1K examples, <em>Multiverse-32B is the only open-sourced non-AR model to match the performance of leading AR-LLMs of the same scale</em>, scoring 54% and 46% on AIME24 & 25, respectively. Moreover, it exhibits superior scaling, outperforming AR-LLMs by 1.87% on average, which results in up to a 2x speedup.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -357,7 +388,7 @@
       
         <div class="row mb-5">
           <div class="col-lg-12">
-            <h3>Reasoning Performance</h3>
+            <h3>Real-world Reasoning Capability</h3>
             <div class="table-responsive">
               <table class="table table-bordered text-center" style="font-size: 0.9rem;">
                   <thead class="table-light">
@@ -399,7 +430,7 @@
                           <td>1.00</td>
                           <td>93.4</td>
                           <td>1.00</td>
-                          <td>60.3</td>
+                          <td>62.6</td>
                           <td>1.00</td>
                       </tr>
                       <tr>
@@ -418,42 +449,42 @@
                       </tr>
                       <tr>
                           <td>Autoregressive-32B</td>
-                          <td><u>51.3</u></td>
+                          <td><strong>54.6</strong></td>
                           <td>1.00</td>
-                          <td><strong>42.9</strong></td>
-                          <td>1.0</td>
+                          <td><u>45.0</u></td>
+                          <td>1.00</td>
                           <td><strong>92.8</strong></td>
                           <td>1.00</td>
-                          <td>61.6</td>
+                          <td><u>61.6</u></td>
                           <td>1.00</td>
                       </tr>
-                      <tr>
+                      <tr style="border-top: 1.5px solid black;">
                           <td><strong>Multiverse-32B-zero</strong></td>
                           <td>52.1</td>
-                          <td>1.07</td>
+                          <td>1.04</td>
                           <td>44.2</td>
                           <td>1.05</td>
-                          <td>91.8</td>
-                          <td>1.05</td>
-                          <td><strong>62.1</strong></td>
-                          <td>1.06</td>
+                          <td><u>92.4</u></td>
+                          <td>1.12</td>
+                          <td><strong>63.6</strong></td>
+                          <td>1.17</td>
                       </tr>
                       <tr>
                           <td><strong>Multiverse-32B</strong></td>
-                          <td><strong>52.9</strong></td>
-                          <td>1.24</td>
-                          <td><u>44.2</u></td>
+                          <td><u>53.8</u></td>
                           <td>1.18</td>
-                          <td><u>92.4</u></td>
+                          <td><strong>45.8</strong></td>
                           <td>1.15</td>
-                          <td><u>61.7</u></td>
+                          <td>91.8</td>
+                          <td>1.15</td>
+                          <td>60.7</td>
                           <td>1.17</td>
                       </tr>
                   </tbody>
               </table>
           </div>
           <p style="font-size: 16px;">
-            TODO: 
+            Multiverse-32B achieves significant improvements over the Qwen2.5 model by 24.5% after SFT on Multiverse-1K, while matching or exceeding the performance of AR-LLMs.
           </p>
           </div>
         </div>
@@ -461,41 +492,41 @@
         <div class="row mb-5">
           <div class="col-12">
               <!-- <h3 style="text-align: left; font-weight: 600; color: #0e1b4d; margin-bottom: 15px;">Budget Control</h3> -->
-              <h3>Scaling</h3>
+              <h3>Efficient Scaling Capability</h3>
               <div class="row align-items-center">
                   <div class="col-md-6 d-flex flex-column align-items-center">
                     <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">GPQA-Diamond Scaling</p>
                     <a href="assets/img/linear-1.png" target="_blank" style="width: 90%;">
-                        <img src="assets/img/linear-1.png" alt="Budget Control Figure 1" class="img-fluid" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <img src="assets/img/linear_scaling_1.png" alt="Budget Control Figure 1" class="img-fluid">
                     </a>
                   </div>
                   <div class="col-md-6 d-flex flex-column align-items-center">
                       <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">MATH500 Scaling</p>
                       <a href="assets/img/linear-2.png" target="_blank" style="width: 90%;">
-                          <img src="assets/img/linear-2.png" alt="Budget Control Figure 2" class="img-fluid" style="border: 1px solid #ddd; border-radius: 5px;">
+                          <img src="assets/img/linear_scaling_2.png" alt="Budget Control Figure 2" class="img-fluid">
                       </a>
                   </div>
               </div>
               <p style="font-size: 16px;">
-                TODO: 
+                Multiverse-32B exhibits a superior tradeoff between performance and latency than AR-LLMs. It achieves this by generating more tokens within the same wall-clock time.
               </p>
           </div>
       </div>
       
       <div class="row">
         <div class="col-12">
-            <h3>Efficiency Performance</h3>
+            <h3>Practical Efficiency Analysis</h3>
             <div class="row align-items-center">
                 <div class="col-md-6 d-flex flex-column align-items-center">
                     <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">Speedup vs. Parallelsim</p>
                     <a href="assets/img/latency.png" target="_blank" style="width: 90%; display: block;">
-                        <img src="assets/img/latency.png" alt="Efficiency Figure 1" class="img-fluid" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <img src="assets/img/latency2.png" alt="Efficiency Figure 1" class="img-fluid">
                     </a>
                 </div>
                 <div class="col-md-6 d-flex flex-column align-items-center">
                     <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">Throughput vs. Parallelsim</p>
                     <a href="assets/img/speedup.png" target="_blank" style="width: 90%; display: block;">
-                        <img src="assets/img/speedup.png" alt="Efficiency Figure 2" class="img-fluid" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <img src="assets/img/speedup2.png" alt="Efficiency Figure 2" class="img-fluid">
                     </a>
                 </div>
                 <p style="font-size: 16px;">
@@ -507,15 +538,15 @@
 
     </section>
 
-  </section><section id="multiverse-1k" class="section-with-bg">
+  </section><section id="multiverse Training" class="section-with-bg">
     <div class="container" data-aos="fade-up">
         <div class="section-header">
-            <h2>Multiverse 1K</h2>
-            <p>Explore the parallelism in the training corpus</p>
+            <h2>Multiverse Training</h2>
+            <p>Explore the parallelism in Multiverse 1K</p>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <p>Multiverse-1K is a new generation of Multiverse model, which is trained on 1K examples. Select one id to show the xml.</p>
+                <p>We train the Multiverse model using the curated Multiverse-1K corpus. Click one id to view the corresponding example.</p>
                 <div style="margin-bottom: 20px;">
                     <select id="xml-selector" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
                         <option value="">Select one example</option>
@@ -533,18 +564,18 @@
     <section id="how-to-build" class="section-with-bg">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
-          <h2>How to Build Multiverse Model</h2>
+          <h2>How to Build a Multiverse Model</h2>
           <p>Understanding the co-design of data, algorithm, and system.</p>
         </div>
 
         <!-- Data Subsection -->
         <div class="row subsection-row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12">
-            <h3 class="subsection-title">Data: Multiverse 1K</h3>
+            <h3 class="subsection-title">Data: Multiverse Curator</h3>
           </div>
           <div class="col-lg-10 offset-lg-1 text-center mb-4">
-            <img src="assets/img/data.png" class="img-fluid rounded" alt="Multiverse 1K Data Curation Pipeline" style="width: 80%;">
-            <p class="mt-2 fst-italic">Figure (a): Multiverse 1K is automatically generated using an LLM-assisted data curation pipeline.</p>
+            <img src="assets/img/data.png" class="img-fluid" alt="Multiverse 1K Data Curation Pipeline" style="width: 80%;">
+            <p class="mt-2 fst-italic">Multiverse Curator automatically generated Multiverse-1K using an LLM-assisted data curation pipeline.</p>
           </div>
           <div class="col-lg-10 offset-lg-1">
             <p>
@@ -574,15 +605,15 @@
         <hr class="subsection-divider">
 
         <!-- Algorithm Subsection -->
-        <div class="row subsection-row align-items-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="row subsection-row" data-aos="fade-up" data-aos-delay="200">
           <div class="col-lg-12">
             <h3 class="subsection-title">Algorithm: Multiverse Attention</h3>
           </div>
-          <div class="col-lg-5 offset-lg-1 text-center">
-            <img src="assets/img/alg.png" class="img-fluid rounded mb-3" alt="Multiverse Attention Mechanism" style="width: 80%;">
+          <div class="col-lg-5 offset-lg-1 text-center side-by-side-scroll">
+            <img src="assets/img/alg.png" class="img-fluid mb-3" alt="Multiverse Attention Mechanism" style="width: 80%;">
             <p class="mt-2 fst-italic">Figure (b): Multiverse Attention mechanism.</p>
           </div>
-          <div class="col-lg-5">
+          <div class="col-lg-5 side-by-side-scroll">
             <p>
               Next, we introduce <strong>Multiverse Attention</strong> to replace the causal attention in AR-LLMs.  
               Causal attention computes the i-th token's output with query 
@@ -602,15 +633,15 @@
         <hr class="subsection-divider">
 
         <!-- Engine Subsection -->
-        <div class="row subsection-row align-items-center" data-aos="fade-up" data-aos-delay="300">
+        <div class="row subsection-row" data-aos="fade-up" data-aos-delay="300">
           <div class="col-lg-12">
             <h3 class="subsection-title">System: Multiverse Engine</h3>
           </div>
-          <div class="col-lg-5 offset-lg-1 text-center">
-            <img src="assets/img/engine.png" class="img-fluid rounded mb-3" alt="Multiverse Engine Architecture">
+          <div class="col-lg-5 offset-lg-1 text-center side-by-side-scroll">
+            <img src="assets/img/engine.png" class="img-fluid mb-3" alt="Multiverse Engine Architecture">
              <p class="mt-2 fst-italic">Figure (c): Multiverse Engine architecture.</p>
           </div>
-          <div class="col-lg-5">
+          <div class="col-lg-5 side-by-side-scroll">
             <p>
               To enable truly parallel generation in practical deployments, we introduce <strong>Multiverse Engine</strong>, an extension of existing inference engines designed for AR models. Specifically, we employ SGLang due to its support for continuous batching and radix attention. These features allow dynamic batch scheduling and flexible KV-cache reuse, two scenarios frequently occur in the <code>Map</code> and <code>Reduce</code> stages.
             </p>
@@ -636,7 +667,7 @@
         <div class="row">
           <div class="col-lg-12">
             <p style="font-size: 16px; text-align: left;">
-              We thank Zhuoming Chen, Haizhong Zheng, Ranajoy Sadhukhan, Songlin Yang, Liliang Ren, Wentao Guo, Ruijie Zhu, Yu Zhang, Yixin Dong, Tian Jin, and Xin Dong for their constructive feedback on this work. We are particularly grateful to NVIDIA and BitDeer AI Research for generously providing GPU resources, and to Google for supplying free Gemini API credits. This research was supported in part by a Google Research Award, an Amazon Research Award, Intel, Li Auto, Moffett AI, and the CMU CyLab Seed Fund.
+              We thank Zhuoming Chen, Haizhong Zheng, Ranajoy Sadhukhan, Yang Zhou, Songlin Yang, Liliang Ren, Wentao Guo, Ruijie Zhu, Yu Zhang, and Yixin Dong for their constructive feedback on this work, along with the authors of s1, SGLang, and LightEval for their useful codebase. We are also grateful to BitDeer AI Research for providing GPU resources and to Google for supplying Gemini API credits. This research was supported in part by a DGX B200 gift from NVIDIA, a Google Research Award, an Amazon Research Award, Intel, Li Auto, Moffett AI, and the CMU CyLab Seed Fund.
             </p>
           </div>
         </div>
