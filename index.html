@@ -63,14 +63,21 @@
 
   <style>
     code {
-      background-color: #f0f0f0;
+      background-color: #f8f9fa;
       color: #2d2d2d;
       padding: 2px 6px;
-      border-radius: 3px;
+      border-radius: 4px;
       font-weight: 500;
       font-family: 'Fira Code', monospace;
       font-size: 0.95em;
       letter-spacing: 0.5px;
+      border: 1px solid #e9ecef;
+    }
+    strong {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 1.05em;
+      color: #e83e8c;
     }
     .gradient-text {
       background: linear-gradient(45deg, #FF9A8B, #FF6B88, #FF99AC, #FFD3B5);
@@ -80,12 +87,6 @@
       font-weight: 700;
       letter-spacing: 0.5px;
       font-size: 1.05em;
-    }
-    strong {
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      font-size: 1.05em;
-      color: #e83e8c;
     }
     .title-break {
       white-space: pre-line;
@@ -233,7 +234,7 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#abstract">Abstract</a></li>
           <li><a class="nav-link scrollto" href="#evaluation">Multiverse Evaluation</a></li>
-          <li><a class="nav-link scrollto" href="#multiverse Training">Multiverse Training</a></li>
+          <li><a class="nav-link scrollto" href="#training">Multiverse Training</a></li>
           <li><a class="nav-link scrollto" href="#how-to-build">How to Build a Multiverse Model</a></li>
 
           <li><a class="nav-link scrollto" href="#acknowledge">Acknowledgments</a></li>
@@ -342,7 +343,7 @@
       </div>
     </section><!-- End Abstract Section -->
 
-    <section id="evaluation" class="section-with-bg">
+    <section id="evaluation" class="section-with-bg" style="padding-top: 40px;">
     
     <style>
       .steps-container {
@@ -518,19 +519,19 @@
             <h3>Practical Efficiency Analysis</h3>
             <div class="row align-items-center">
                 <div class="col-md-6 d-flex flex-column align-items-center">
-                    <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">Speedup vs. Parallelsim</p>
+                    <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">Speedup vs. Parallelism</p>
                     <a href="assets/img/latency.png" target="_blank" style="width: 90%; display: block;">
                         <img src="assets/img/latency2.png" alt="Efficiency Figure 1" class="img-fluid">
                     </a>
                 </div>
                 <div class="col-md-6 d-flex flex-column align-items-center">
-                    <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">Throughput vs. Parallelsim</p>
+                    <p style="text-align: center; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; color: #0e1b4d;">Throughput vs. Parallelism</p>
                     <a href="assets/img/speedup.png" target="_blank" style="width: 90%; display: block;">
                         <img src="assets/img/speedup2.png" alt="Efficiency Figure 2" class="img-fluid">
                     </a>
                 </div>
                 <p style="font-size: 16px;">
-                  TODO: 
+                  Multiverse-32B achieves up to 2x wall-clock speedup per generated token while maintaining effective scaling across variable batch sizes.
                 </p>
             </div>
         </div>
@@ -538,7 +539,7 @@
 
     </section>
 
-  </section><section id="multiverse Training" class="section-with-bg">
+  </section><section id="training" class="section-with-bg" style="padding-top: 40px;">
     <div class="container" data-aos="fade-up">
         <div class="section-header">
             <h2>Multiverse Training</h2>
@@ -561,7 +562,7 @@
   </section>
   
     <!-- ======= How to Build Multiverse Model Section ======= -->
-    <section id="how-to-build" class="section-with-bg">
+    <section id="how-to-build" class="section-with-bg" style="padding-top: 80px;">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h2>How to Build a Multiverse Model</h2>
@@ -574,30 +575,13 @@
             <h3 class="subsection-title">Data: Multiverse Curator</h3>
           </div>
           <div class="col-lg-10 offset-lg-1 text-center mb-4">
-            <img src="assets/img/data.png" class="img-fluid" alt="Multiverse 1K Data Curation Pipeline" style="width: 80%;">
-            <p class="mt-2 fst-italic">Multiverse Curator automatically generated Multiverse-1K using an LLM-assisted data curation pipeline.</p>
+            <img src="assets/img/data_transparent.png" class="img-fluid" alt="Multiverse 1K Data Curation Pipeline" style="width: 100%;">
+            <p class="mt-2">Figure (a): Multiverse Curator automatically generated Multiverse-1K using an LLM-assisted data curation pipeline.</p>
           </div>
           <div class="col-lg-10 offset-lg-1">
             <p>
-              To address the absence of MapReduce structures in existing sequential reasoning data, we introduce <strong>Multiverse-1K</strong>. While these long CoT trajectories often inherently contain such structures, explicitly generating them is difficult. Thus, we develop an automated LLM-assisted pipeline that transforms sequential reasoning chains into parallel MapReduce structures. This conversion is guided by a five-stage prompting protocol powered by Gemini 2.5 Pro.
-            </p>
-            <p>
-              <strong>Generating a Summary Tree.</strong> First, we iteratively decompose and outline the original reasoning chain into a two-level tree structure. In the first round, the entire reasoning chain is broken down into multiple steps. In the second round, each step is examined by the LLM for further decomposition into substeps. Each resulting step or substep will be labeled and outlined with a concise description.
-            </p>
-            <p>
-              <strong>Identifying Parallel Groups.</strong> Second, we instruct the LLM to analyze each reasoning step, identifying which steps or groups of steps can be executed in parallel without violating logical dependencies.
-            </p>
-            <p>
-              <strong>Reformating into Parallel Structures.</strong> Third, the summary tree is converted into a parallel structure based on the previous analysis. To explicitly signal parallel execution, parallelizable steps or step groups are enclosed within the control tags <code>&lt;Parallel&gt;</code> and <code>&lt;/Parallel&gt;</code>, forming a parallel block.
-            </p>
-            <p>
-              <strong>Refilling Original Details.</strong> Fourth, we prompt the LLM to repopulate the detailed content for each step and substep. This is achieved by retrieving and copying the related original reasoning trajectories.
-            </p>
-            <p>
-              <strong>Adding MapReduce Structures.</strong> Finally, we further convert the parallel structures into MapReduce structures. For each parallel block, the LLM generates both the <code>Map</code> and <code>Reduce</code> stages by outlining the specific goals and results for each individual path. Moreover, all paths are rewritten to avoid words implying sequential relations (e.g., similarly) and to prevent including or referencing content from other paths, thereby ensuring each path's completeness and independence.
-            </p>
-            <p>
-              To further refine our data, two supplementary validation stages are incorporated. After the fourth stage, a content check will filter out data if its edit distance ratio is above 0.2. Next, after the fifth stage, a grammar check will confirm strict adherence to our MapReduce structures. Data failing either case will be iteratively regenerated through our pipeline until both standards are met. The application of this automated pipeline to the s1K-1.1 dataset has yielded Multiverse 1K, a new dataset consisting of 1,000 high-quality, structured reasoning trajectories across a range of math and science problems.
+              To address this absence of MapReduce structures in existing
+data, we develop <strong>Multiverse Curator</strong>, an automated LLM-assisted pipeline that transforms sequential chains into parallel structures via five steps: (i) parsing the sequential chain into a summary tree; (ii) identifying parallelizable nodes within the summary tree; (iii) reformatting the summary into a parallel generation structure; (iv) refilling original reasoning steps into this structure; and (v) adding <code>Map</code> &amp; <code>Reduce</code> stages while rewriting the <code>Process</code> stage. Moreover, content and grammar checks are performed to flag low-quality data for regeneration, avoiding costly manual filtration and annotation. In practice, this process results in <strong>Multiverse-1K</strong>, a dataset of 1,000 high-quality structured training samples for advancing LLM reasoning.
             </p>
           </div>
         </div>
@@ -609,22 +593,13 @@
           <div class="col-lg-12">
             <h3 class="subsection-title">Algorithm: Multiverse Attention</h3>
           </div>
-          <div class="col-lg-5 offset-lg-1 text-center side-by-side-scroll">
-            <img src="assets/img/alg.png" class="img-fluid mb-3" alt="Multiverse Attention Mechanism" style="width: 80%;">
-            <p class="mt-2 fst-italic">Figure (b): Multiverse Attention mechanism.</p>
+          <div class="col-lg-4 offset-lg-1 text-center side-by-side-scroll">
+            <img src="assets/img/algo_transparent.png" class="img-fluid mb-3" alt="Multiverse Attention Mechanism" style="width: 100%;">
+            <p class="mt-2">Figure (b): Multiverse Attention.</p>
           </div>
-          <div class="col-lg-5 side-by-side-scroll">
+          <div class="col-lg-6 side-by-side-scroll">
             <p>
-              Next, we introduce <strong>Multiverse Attention</strong> to replace the causal attention in AR-LLMs.  
-              Causal attention computes the i-th token's output with query 
-              <code>q<sub>i</sub></code>, and keys <code>k<sub>j</sub></code>, values <code>v<sub>j</sub></code> 
-              from positions <code>j &le; i</code>.
-            </p>
-            <p>
-              However, this formulation poses challenges for conceptual parallel generation, as later paths rely on both (i) the key-value (KV) pairs and (ii) the positional indices produced by earlier paths. To address this, we modify both the attention masks and position indices following APE. In Multiverse Attention, each path within the same block starts from the same position and executes independently without accessing others. During the <code>Reduce</code> stage, all paths converge to the same position equal to the maximum position reached across paths, regardless of their individual lengths.
-            </p>
-            <p>
-              Due to its similarity with causal attention, Multiverse Attention supports efficient training since (i) it preserves training parallelism, and (ii) it can be seamlessly adapted via fine-tuning on a few samples.
+              We design <strong>Multiverse Attention</strong> to enable parallel generation while keeping training efficiency. In Multiverse Attention, each path within the same <code>Process</code> block starts from an identical position and executes independently without accessing others. During the <code>Reduce</code> stage, all paths converge to the same position, which is set to the maximum position reached by any path to avoid negative relative distance, regardless of their variable lengths. Building on its similarity to causal attention, Multiverse Attention enables (i) Hardware Efficiency: it can preserve training parallelism, and (ii) Data Efficiency: it can be rapidly adapted via fine-tuning on a few samples.
             </p>
             <!-- Add more paragraphs or details as needed -->
           </div>
@@ -637,19 +612,13 @@
           <div class="col-lg-12">
             <h3 class="subsection-title">System: Multiverse Engine</h3>
           </div>
-          <div class="col-lg-5 offset-lg-1 text-center side-by-side-scroll">
-            <img src="assets/img/engine.png" class="img-fluid mb-3" alt="Multiverse Engine Architecture">
-             <p class="mt-2 fst-italic">Figure (c): Multiverse Engine architecture.</p>
+          <div class="col-lg-4 offset-lg-1 text-center side-by-side-scroll">
+            <img src="assets/img/sys_transparent.png" class="img-fluid mb-3" alt="Multiverse Engine Architecture">
+             <p class="mt-2">Figure (c): Multiverse Engine.</p>
           </div>
-          <div class="col-lg-5 side-by-side-scroll">
+          <div class="col-lg-6 side-by-side-scroll">
             <p>
-              To enable truly parallel generation in practical deployments, we introduce <strong>Multiverse Engine</strong>, an extension of existing inference engines designed for AR models. Specifically, we employ SGLang due to its support for continuous batching and radix attention. These features allow dynamic batch scheduling and flexible KV-cache reuse, two scenarios frequently occur in the <code>Map</code> and <code>Reduce</code> stages.
-            </p>
-            <p>
-              The <code>Map</code> stage is automatically triggered when a <code>&lt;Parallel&gt;</code> token is generated. Next, the scheduler counts the number of <code>&lt;Outline&gt;</code> encountered to decide the degree of parallelism until reaching <code>&lt;/Goal&gt;</code>. Based on this count, the engine creates multiple paths executed in parallel as distinct samples within the same batch. Leveraging radix attention, these paths share the prefix KV cache from the current context. Each path is identified and initiated with "<code>&lt;Path&gt; i</code>" according to its order <code>i</code> in the <code>&lt;Outline&gt;</code> list. After prefilling, all paths are added to the decoding queue for parallel generation. When a path finishes, either by reaching <code>&lt;/Path&gt;</code> or the maximum length, it enters a "zombie" state that releases all resources and waits for the completion of other paths before continuing.
-            </p>
-            <p>
-              The <code>Reduce</code> stage begins once all processing paths have completed. In this stage, the engine merges the KV states from all paths along with the preceding context to form a new sequence. Thanks to the flexible memory layout of the radix cache, indices of KV cache can be seamlessly merged without any padding, thereby avoiding both physical data copying and subsequent redundant computation. The token <code>&lt;Conclusion&gt;</code>, prefixed by this combined KV cache, is then added to the prefilling queue. Once finished, the task is moved to the decoding queue to resume generation along the new sequence.
+              we implement <strong>Multiverse Engine</strong> featuring a specialized interpreter to support MapReduce execution. By interpreting control tags generated by Multiverse models, our engine can dynamically switch between sequential and parallel generation without overhead, yielding a flexible workflow. This includes (i) Sequential $\rightarrow$ Parallel: mapping subtasks to separate branches for parallel execution with prefix sharing, and \mbox{(ii) Parallel $\rightarrow$ Sequential: reducing Key-Value (KV) states from all branches back into one sequence.}
             </p>
             <!-- Add more paragraphs or details as needed -->
           </div>
@@ -659,7 +628,7 @@
     </section><!-- End How to Build Multiverse Model Section -->
     
     <!-- ======= Acknowledge Section ======= -->
-    <section id="acknowledge" class="section-with-bg">
+    <section id="acknowledge" class="section-with-bg" style="padding-top: 80px;">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h2>Acknowledgments</h2>
