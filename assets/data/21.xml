@@ -1,0 +1,273 @@
+<Think>
+Alright, let me try to tackle this problem. So, we need to show that for any compact set K inside G, there's a constant C such that if u is a real harmonic function on G that vanishes at some point in K, then the supremum of |u(z)| over K is bounded by C times the supremum over the neighborhood Z(u) ∩ G, where Z(u) is the 1-neighborhood around the roots of u.
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1: Explore connections to standard harmonic function properties like Harnack's inequality and the Maximum Principle, noting their limitations in this context.
+</Outline>
+<Outline>
+2: Explore using the Mean Value Property centered at the point where the function vanishes.
+</Outline>
+</Goal>
+<Path>
+1: Hmm, so essentially, if a harmonic function vanishes somewhere in K, its size on all of K can't be too much bigger than its size near its zero set. This seems related to Harnack's inequality or perhaps the mean value property? But since we're dealing with maximums and not averages, maybe it's more like a maximum principle?
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1.1: Consider the Maximum Principle and its applicability here.
+</Outline>
+<Outline>
+1.2: Consider Harnack's inequality and its applicability here.
+</Outline>
+</Goal>
+<Path>
+1.1: Wait, the maximum principle for harmonic functions states that the maximum (and minimum) are attained on the boundary, but here we have something different.
+</Path>
+<Path>
+1.2: The function vanishes at some point in K, so maybe we can use some kind of Harnack's inequality to bound the function's growth from its zero set?
+</Path>
+<Conclusion>
+The Maximum Principle doesn't directly apply as the condition involves an interior point, not just the boundary. Harnack's inequality might be useful for bounding growth from a zero, but its standard form requires non-negativity, which isn't guaranteed here.
+</Conclusion>
+</Parallel>
+</Path>
+<Path>
+2: Alternatively, maybe we can consider using the mean value property around the point where u vanishes. If u vanishes at a point in K, let's say z_0 ∈ K with u(z_0) = 0. Then, the mean value property for harmonic functions tells us that the average of u over any circle centered at z_0 is zero. But since u is real-valued, the maximum and minimum on a circle centered at z_0 would have to balance out in some way. However, I'm not sure how that directly gives us a bound over the whole compact set K.
+</Path>
+<Conclusion>
+Initial exploration suggests standard tools like the Maximum Principle and Harnack's inequality have limitations (boundary focus, positivity requirement). The Mean Value Property at the zero point confirms the average value is zero locally, but doesn't directly yield a bound on the supremum over the entire compact set K.
+</Conclusion>
+</Parallel>
+Maybe instead, for each point in K, we can find a chain of overlapping disks leading from z_0 to that point, and then use Harnack's inequality along the chain to bound the value at the point in terms of the value near z_0. But z_0 is a point where u vanishes, so in the neighborhood Z(u), which includes all points within 1 unit of any root of u. Wait, the neighborhood Z(u) is the union of all open balls of radius 1 centered at points where u is zero. So any point in G that's within 1 unit of a root of u is in Z(u). So if u vanishes at z_0 in K, then the ball B(z_0,1) is part of Z(u), provided B(z_0,1) is in G. But G is the domain, and K is compact in G, so by the definition of compactness in open sets, K is contained in G and hence there's a positive distance from K to the boundary of G. So maybe the 1-neighborhoods of points in K are still inside G?
+Wait, not necessarily. The problem just states "neighborhood of unit radius of the set of roots of u". So Z(u) is { z ∈ C | dist(z, {roots of u}) < 1 }, intersected with G. But if some roots are near the boundary of G, parts of their 1-neighborhood might stick outside of G, but we're only considering the intersection with G. Hmm. But the key point is that since K is compact in G, there is a positive distance d from K to the boundary of G. Therefore, if you take a slightly smaller open set around K, still within G. Maybe we can use a cover of K with finitely many disks, and use elliptic estimates or something? Wait, this is a harmonic function, not necessarily analytic, so maybe different tools.
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1: Evaluate the utility of the subharmonicity of |u|.
+</Outline>
+<Outline>
+2: Investigate the local behavior of u near its zero z_0.
+</Outline>
+</Goal>
+<Path>
+1: The use of subharmonic functions can be considered. Since u is harmonic, its absolute value |u| is subharmonic. The property that |u| is subharmonic when u is harmonic is a known characteristic. However, the specific way this property aids in the current problem is not immediately evident.
+</Path>
+<Path>
+2: The condition u(z_0)=0 implies that |u(z_0)|=0 at that specific point. A primary objective is to relate the maximum of |u| on the compact set K to its maximum in the neighborhood of its zero set.
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+2.1: Determine the local growth of u from its zero and the feasibility of bounding its maximum in a nearby ball.
+</Outline>
+<Outline>
+2.2: Evaluate the local behavior of u around its zero point using standard harmonic function properties.
+</Outline>
+</Goal>
+<Path>
+2.1: If u vanishes at a point z_0 in K, it must exhibit growth from zero in the region near z_0, particularly within a ball B(z_0,1). The mean value property could potentially be used to establish a bound for the maximum of u within this ball, possibly in terms of its maximum on a slightly larger concentric ball.
+</Path>
+<Path>
+2.2: If u is harmonic within a ball B(z_0, R), the mean value property dictates that its average value over this ball is u(z_0) = 0. This observation, however, does not directly provide a bound on the maximum value of u. The maximum principle asserts that if u is not constant, its maximum on the closure of B(z_0, R) is attained on the boundary. Consequently, the maximum of |u| on the closed ball B(z_0, R) is equal to its maximum on the boundary circle. The fact that the average is zero might suggest a connection between the maximum value and some oscillatory behavior of the function.
+</Path>
+<Conclusion>
+Bounding the maximum of u locally near its zero using the mean value property is not straightforward. While the property confirms a zero average, and the maximum principle links the interior maximum to the boundary maximum, establishing a clear connection to oscillation or a useful quantitative bound proves difficult.
+</Conclusion>
+</Parallel>
+Harnack's inequality is considered as a potential tool. This inequality, for non-negative harmonic functions within a ball, provides bounds on the ratio of their maxima and minima in smaller, interiorly contained balls. The function u is real-valued, which means it can assume both positive and negative values.
+If u vanishes at a point, decomposing it into its positive and negative parts is a possibility, though its utility in this context is not definite.
+</Path>
+<Conclusion>
+The subharmonicity of |u| does not offer an immediately clear path forward. Exploring the local behavior of u near its zero z_0 reveals that, while properties such as the Mean Value Property and the Maximum Principle are applicable locally, translating the condition u(z_0)=0 into a useful bound on the local maximum is challenging, partly because u can change sign, which also complicates the direct application of Harnack's inequality.
+</Conclusion>
+</Parallel>
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1: Determine the relationship between u being zero in a ball around its zero point and the Z(u) neighborhood.
+</Outline>
+<Outline>
+2: Investigate the use of local smoothness and derivative bounds of harmonic functions near their zeros.
+</Outline>
+</Goal>
+<Path>
+1: If a harmonic function u vanishes at a point, its values within a ball around that point are expected to be constrained. The specific connection between this local behavior and the neighborhood Z(u) needs to be established.
+</Path>
+<Path>
+2: The local behavior of harmonic functions can be examined. The smoothness inherent to harmonic functions suggests the possibility of bounding their derivatives in the vicinity of a zero.
+</Path>
+<Conclusion>
+The relationship between the function's behavior in a ball around its zero and the Z(u) neighborhood is not immediately apparent. While the smoothness of harmonic functions allows for derivative bounds near a zero, the method by which this could lead to the required global bound on K remains undetermined.
+</Conclusion>
+</Parallel>
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1: Analyze the zero set of u and the neighborhood Z(u) by representing u as the real part of an analytic function f(z).
+</Outline>
+<Outline>
+2: Assess the relevance of harmonic measure or boundary estimates for the problem, considering K is an internal compact set.
+</Outline>
+</Goal>
+<Path>
+1: When a harmonic function u vanishes at a point z_0, its behavior near z_0 can be approximated by its derivatives. If the gradient of u is non-zero at z_0, u behaves like a linear function near z_0, with growth proportional to |z - z_0|. If the gradient is zero, higher-order terms determine its behavior. Harmonic functions are generally analytic and thus possess Taylor expansions. The utility of this observation for the current problem is not immediately clear.
+Harmonic functions in two dimensions can be expressed as the real parts of analytic functions.
+Specifically, if u is harmonic, it can be written as u = Re f(z), where f(z) is an analytic function.
+Consequently, the zeros of u correspond to points where the real part of f(z) is zero.
+The zero set of u is therefore the preimage of the imaginary axis under the mapping f.
+The neighborhood Z(u) then comprises all points within a unit distance of this zero set.
+This representation suggests a potential method: if Re f(z) is zero at some point, it might be possible to control Re f(z) over the entire compact set K by its maximum values near these zeros.
+This connection, however, might introduce unnecessary complexity to the problem's solution.
+Focusing directly on the properties of harmonic functions may be a more straightforward approach.
+</Path>
+<Path>
+2: The concepts of harmonic measure or boundary estimates could be explored. However, the problem statement does not make assumptions about the boundary of the domain G, only specifying that K is a compact subset within G. This characteristic implies that an argument based on compactness might be more fitting for the problem.
+</Path>
+<Conclusion>
+Representing the harmonic function u as the real part of an analytic function offers an alternative view of its zero set and the neighborhood Z(u), though this approach may introduce undue complexity. Harmonic measure and boundary estimates are likely not central to this problem because K is an internal compact set, indicating that a compactness-based argument is probably more suitable.
+</Conclusion>
+</Parallel>
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1: Explore using finite covers of the compact set K with small balls and applying estimates within these balls.
+</Outline>
+<Outline>
+2: Explore connecting points within K to the zero point z_0 using chains of points and applying estimates (like gradient bounds) along the chain.
+</Outline>
+</Goal>
+<Path>
+1: Given that K is compact, and G is open, we can cover K with a finite number of balls, each of radius r, where the choice of r is such that the slightly larger balls (say, radius 2r) are still contained in G. Then, for each such ball, if the function u vanishes somewhere in B(z_i, 1/2), then in B(z_i, 1), which is within G (due to compactness, the distance from K to ∂G is positive, so if we take small enough balls), then by Harnack's inequality or some other estimate, we can bound the maximum of u in B(z_i, 1/2) by the maximum in B(z_i, 1). But not exactly sure. Wait, since each point in K is within 1/2 units of some z_i, so the 1-neighborhood of z_i includes the 1/2 neighborhood around the points near z_i. But if another z_j is nearby, then the maximum over K could be connected through these overlapping balls.
+</Path>
+<Path>
+2: But perhaps an even better way is to use a version of the Three Lines Theorem or similar for harmonic functions. Wait, not sure. Alternatively, recall that harmonic functions satisfy the Maximum Principle. So if u is harmonic in G, and vanishes at some point in K, but we need to bound |u| on K by |u| on Z(u) ∩ G. Wait, Z(u) is the 1-neighborhood of the zeros of u. So, if there's a zero in K, then Z(u) contains a 1-ball around that zero, if possible, but G might restrict it. So, Z(u) is the set where u is "close" to a zero. However, in the problem statement, it's only the zero set of u, not the neighborhood where u is close to zero. The Z(u) is the union of 1-balls around every root.
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+2.1: Identify the issue that the neighborhood B(w,1) used for gradient estimates might not be contained within Z(u).
+</Outline>
+<Outline>
+2.2: Identify the issue that the compact set K might not be path-connected, posing a problem for path-based arguments.
+</Outline>
+</Goal>
+<Path>
+2.1: But if |w' - w| <1, and B(w,1) is part of Z(u) ∩ G because w is within 1 of some zero (since we defined Z(u) as the 1-neighborhood of zeros). Wait, no. Not exactly. Z(u) is the 1 neighborhood of the zero set. If the previous step's point has a neighborhood within Z(u), but how to ensure that each B(w,1) is within Z(u)?
+</Path>
+<Path>
+2.2: Wait, perhaps I have the path connected and each step moving within a 1-neighborhood? If z ∈ K, and z is connected to z_0 by points each within 1 unit, but unless K is path-connected, but K is any compact set. Wait, perhaps this chain argument is not going to work because K might not be connected. Hmm.
+</Path>
+<Conclusion>
+The path-based gradient estimate approach faces difficulties: ensuring the balls B(w,1) used for estimates lie within Z(u) is problematic, and the argument implicitly assumes path-connectivity which K might lack.
+</Conclusion>
+</Parallel>
+</Path>
+<Conclusion>
+Using finite covers of K seems plausible for connecting local estimates, but the details are unclear. Path-based arguments using gradient estimates face significant challenges regarding the geometry of Z(u) and the potential disconnectedness of K. The definition of Z(u) as the 1-neighborhood of roots is crucial.
+</Conclusion>
+</Parallel>
+So, the maximum of |u| on Z(u) ∩ G is not necessarily small, because u could be large near other roots. Wait, but in Z(u), we have points within distance 1 of a root of u. So, if a point is in Z(u), there exists a root of u within distance 1 of it. But u can still have large values in Z(u); it just has to have a root nearby. Hmm. The problem says the maximum over Z(u) ∩ G. So maybe if in some direction from a root, the function grows, but near the root, there's oscillation.
+Wait, since u is harmonic, it can't have a local maximum or minimum except at the boundary. But if u vanishes at a point, then near that point, u could go positive or negative. But again, how to use that.
+Alternatively, consider using gradient estimates. If u is harmonic and u(z_0) = 0, then the gradient of u at z_0 is bounded by some multiple of the maximum of |u| in a neighborhood. But I need to recall the exact form of these estimates.
+Alternatively, think about the Poisson integral formula. For any point in the disk around z_0 of radius r, u(z) can be expressed as the integral of the Poisson kernel against u on the boundary. Since u(z_0) = 0, this integral must balance out the positive and negative parts. But integrating zero gives some relation between the values on the boundary. But I don't see the direct connection.
+Wait, here's another thought. Let's fix the compact set K. Since K is compact in G, there is a constant C such that for any z in K, the closed unit disk around z is contained in G. Well, maybe not the entire unit disk, but if the distance d from K to the boundary of G is greater than 1, then unit disks around any z in K would be entirely within G. However, if d is less than 1, then parts might go outside.
+But maybe, to handle that, since K is compact in G, we can cover it with a finite number of balls of radius less than d, right? Wait, not necessarily.
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1: Determine the feasibility of using a finite cover of K by balls, combined with the Mean Value Property and connected estimates through overlapping regions or chains.
+</Outline>
+<Outline>
+2: Assess the applicability of Harnack's inequality, considering its positivity requirement and potential utility for bounding functions on compact sets.
+</Outline>
+</Goal>
+<Path>
+1: A compactness argument can be employed. The compactness of K allows it to be covered by a finite number of balls of radius 1/2, centered at points in K and contained within G. The Mean Value Property implies that for each ball in this cover, the function's value at the center is its average over the ball. Given that the function vanishes at some point within K, it might be possible to link these balls through chains of overlapping regions, progressing from a zero of the function to adjacent areas.
+</Path>
+<Path>
+2: Harmonic functions satisfy Harnack's inequality, which states that for a non-negative harmonic function in a domain, its values on a compact subset are bounded by a multiple of its value at a fixed point. The function in question is real-valued, has a zero, and is not necessarily non-negative. If the function u is zero at a point, it can be decomposed into its positive and negative parts in the vicinity of that point. Harnack's inequality also implies that for any positive harmonic function u in G, there is a constant C (dependent on K and G) such that the supremum of u on K is bounded by C times its infimum on K, for any compact subset K of G. However, since u is real-valued and possesses a zero, it cannot be consistently positive or negative throughout its domain.
+</Path>
+<Conclusion>
+The strategy of using a finite cover with connected estimates appears plausible, though the specific mechanism for linking these estimates is not yet fully defined. Direct application of Harnack's inequality is complicated by the function's ability to change sign, despite the inequality's effectiveness in providing strong bounds for positive functions on compact sets.
+</Conclusion>
+</Parallel>
+Alternatively, maybe use a harmonic conjugate. Since G is a subset of C, which is simply connected if necessary (but maybe G isn't simply connected). Wait, but the problem doesn't say that G is simply connected. If G is not simply connected, harmonic functions may not have harmonic conjugates. Hmm. But perhaps you don't need harmonic conjugates. Maybe instead, for each z in K, use the bound from the Maximum Principle. Wait, if u vanishes at a point z_0 ∈ K, then consider a ball around z_0 where u is harmonic. Then |u(z)| ≤ something involving the maximum on the boundary?
+Alternatively, let's think about what happens if u vanishes at z_0, but |u(z)| is bounded on Z(u). But Z(u) includes points up to 1 unit away from any root, so any point within 1 of a root. So, if u(z_0) = 0, then every point within 1 of z_0 is in Z(u), provided that the disk of radius 1 around z_0 is in G. So, on that disk, u is harmonic, and we can use the Poisson formula to express u(z) within the disk. Then, perhaps the Maximum modulus principle could help us bound |u| in a smaller disk. Wait, suppose z is in K, and the shortest distance from z to z_0 is less than 1. Then z is in Z(u), but if not, maybe we need to use a connectness argument with a chain of points stepping from z_0 to z each step less than 1. However, K might not be connected. Maybe not. But if K is compact, we can cover it with a finite number of such chains. So let's say, split K into a finite number of overlapping regions each within 1 unit from each other. Then, starting from z_0, in each step, apply the Harnack inequality to bound the maximum over the next region. However, Harnack's inequality requires positivity. If u is positive on G, then Harnack can give that sup_K u ≤ C inf_K u. But here u can change signs. Alternatively, since u is real and harmonic, split it into positive and negative parts, but since u(z_0) = 0, the maximum and minimum on K can be controlled. But I need to formalize this idea.
+Wait, suppose we set M = sup_{Z(u) ∩ G} |u(z)|. Then, by the hypothesis, u is a real harmonic function which vanishes at some point in K, and we need to show that sup_K |u(z)| ≤ C*M. Assume that u is harmonic in G and that z_0 ∈ K with u(z_0) = 0. Let M be the maximum of |u| over Z(u) ∩ G, which includes all points within 1 unit of any root of u. So, since z_0 is in K and a root of u, then the ball B(z_0,1) is part of Z(u), assuming it's inside G. However, if not entirely inside G, then Z(u) ∩ G is the part within G. But let's for simplicity, given that K is compact in G, there exists a distance d = dist(K, ∂G) > 0. If d ≥1, then B(z,1) is inside G for all z ∈ K, which is perfect. If d <1, then B(z,1) may go outside G, so Z(u) ∩ G is the set of points within 1 of the zero set of u that are still in G. But regardless, the goal is to bound |u(z)| for z ∈ K by C*M.
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1: Consider connecting points to z_0 via line segments covered by disks and applying Harnack's inequality piecewise, noting the positivity issue.
+</Outline>
+<Outline>
+2: Consider connecting points to z_0 via paths and using gradient estimates integrated along the path, relating gradient bounds to the supremum M.
+</Outline>
+</Goal>
+<Path>
+1: So maybe proceed as follow: For any z ∈ K, consider the line segment connecting z to z_0 (a point where u(z_0)=0). If the length of the segment is L, then cover the segment with overlapping disks of radius slightly less than 1, so that the number of disks needed is proportional to L. Then, using Harnack's inequality through each disk to bound the maximum of |u| in terms of M. Since each disk is in Z(u) or adjacent to another disk which is. But for Harnack's to work, u should be of one sign in each disk? Not necessarily.
+</Path>
+<Path>
+2: Alternatively, use gradient estimates: if in each disk of radius 1, the maximum of |u| is M, then the derivative of u in that disk can be estimated. Then integrating the derivative along a path from z_0 to z would give a bound on |u(z)| in terms of the length of the path and the maximum derivative. However, the error is that u might not be analytic here, but harmonic functions are smooth. So for harmonic functions, we can bound the derivatives in terms of the function bounds on slightly larger disks. Yes, okay. If you have a harmonic function on a disk B(z_0, R), then for any multi-index α, there is a bound on |D^{α}u(z_0)| in terms of the supremum of |u| on B(z_0, R). Specifically, the gradient of u can be bounded by C/R * sup_{B(z_0, R)} |u|, right?
+</Path>
+<Conclusion>
+Path-based approaches using either Harnack or gradient estimates seem promising but run into issues. The Harnack approach requires positivity which isn't guaranteed. The gradient estimate approach relies on bounding the gradient via the local supremum of |u|, which needs to be related back to the known bound M on Z(u) ∩ G. Both approaches face difficulties related to K possibly being disconnected and ensuring the regions used for estimates relate correctly to Z(u).
+</Conclusion>
+</Parallel>
+In our case, if near z_0, we know that sup_{B(z_0,1)} |u| ≤ M, but actually B(z_0,1) might not be entirely in G, but if the 1-neighborhoods are within G, because K is compact in G. Wait, but K's distance to ∂G being greater than some d, if d >1, then we can take R=1. If d <1, then instead of R=1, take R=d. But maybe the constant C must depend on K and G, so perhaps dependent on d. So, for each z in K, connect it to z_0 by a chain of points z_0, z_1, ..., z_n = z, where each step |z_{i+1} - z_i| < 1. The number of steps depends on the diameter of K and how much overlap we need. Since K is compact, its diameter is finite, so the number of steps needed can be chosen uniformly for all z in K. Then, using gradient estimates for each step, where along each segment from z_i to z_{i+1}, the derivative bounds allow us to bound |u(z_{i+1})| ≤ |u(z_i)| + C * length * sup | gradient |. But since each gradient is bounded by C * sup_{B(z_i, R)} |u|. If we can ensure that each B(z_i, R) is within Z(u) ∩ G, then the sup over B(z_i, R) |u| is ≤ M. Then, the total bound would be something like a geometric series.
+Wait, here's a more precise idea: Suppose that for each point z in K, there exists a sequence of points connecting z_0 to z, with each consecutive pair within distance 1, and the number of such steps is at most N (since K is compact, you can have a uniform bound on the number of steps). Then, for each step, moving from a point w to w', where |w - w'| < 1. If u is harmonic on G and B(w,1) ⊂ G, then by the gradient estimate, the gradient of u at w is bounded by C* sup_{B(w,1)} |u|, where C is a constant depending only on dimension (in complex plane, C might be 2, via Cauchy estimates but for harmonic functions). Therefore, the difference |u(w') - u(w)| ≤ |grad u| * |w' - w| ≤ C * sup_{B(w,1)} |u| * |w' - w|. But if |w' - w| <1, and B(w,1) is part of Z(u) ∩ G because w is within 1 of some zero (since we defined Z(u) as the 1-neighborhood of zeros). Wait, no. Not exactly. Z(u) is the 1 neighborhood of the zero set. If the previous step's point has a neighborhood within Z(u), but how to ensure that each B(w,1) is within Z(u)? Wait, perhaps I have the path connected and each step moving within a 1-neighborhood? If z ∈ K, and z is connected to z_0 by points each within 1 unit, but unless K is path-connected, but K is any compact set. Wait, perhaps this chain argument is not going to work because K might not be connected. Hmm. Alternatively, we could take a finite subcover of K consisting of balls of radius 1/2, and in each ball, we relate the maximum of |u| to M. Since K is compact, let's cover it with finitely many balls B_1, ..., B_n of radius 1/2. For each ball B_i, let's consider the ball B_i' of radius 1 centered at the same center. If the 1/2 balls cover K, then each point in K is within 1/2 of some center. So, the 1-radius balls B_i' would then cover the 1/2-neighborhood around K, but need them to be contained within G. Given K is compactly contained in G, there exists a distance d>0 such that dist(K, ∂G) =d. So if we take the cover with balls of radius r= min(1, d/2). Then, the balls of radius 2r are still within G. Wait, that might be overcomplicating.
+Alternatively, since K is compact in G, there is a compact set L such that K ⊂ L ⊂ G, and L has a positive distance to ∂G. So we can work within L. Then, on L, harmonic functions have bounded derivatives in terms of their sup norm.
+But perhaps use the following result: on a compact set L with a positive distance to ∂G, the space of harmonic functions on G, normalized by their maximum on L, is a Banach space, and the evaluation functionals (at points z ∈ K) are continuous. Then, if all these functions vanish somewhere in K, maybe use a compactness argument to show that ratios of max_K |u| / max_{Z(u) ∩ G} |u| are bounded.
+But this might be too abstract. Let me think of using a proof by contradiction. Suppose that the conclusion fails. Then, for each n, there exists a harmonic function u_n on G vanishing at some z_n ∈ K, such that sup_{K} |u_n| > n sup_{Z(u_n) ∩ G} |u_n|. Then, after normalization, we can set sup_{K} |u_n| = 1, so that sup_{Z(u_n) ∩ G} |u_n| < 1/n. Now, since K is compact, and the sequence u_n is bounded on K (since sup_K |u_n|=1), by passing to a subsequence, perhaps we can extract a convergent subsequence. Harmonic functions are normal families when locally bounded, due to Harnack's theorem. So if we have a sequence of harmonic functions uniformly bounded on compact subsets, there is a subsequence converging locally uniformly to a harmonic function. However, our normalization is that sup_K |u_n| = 1, which doesn't directly bound them on all compact subsets, unless G is connected and we can use Harnack's principle. Not sure. Wait, but K is a fixed compact set. So the functions u_n are all 1 on some point in K (since sup is 1) and at the same time, the sup over Z(u_n) ∩ G is less than 1/n. So in the limit, the harmonic function u would satisfy sup_K |u| =1 (by uniformity of convergence on K if they converge) and on the lim sup of Z(u_n) ∩ G, u would be 0. But the lim sup of Z(u_n) ∩ G would be some set where u is zero? Wait, not quite.
+Alternatively, since each u_n vanishes somewhere in K (z_n), then passing to a subsequence, z_n converges to some z_0 in K. If u is the limit function, then since u_n converges uniformly near z_0, we have u(z_0)=0.
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1: Ascertain the convergence of a subsequence of vanishing points z_n to a point z_0 within the compact set K.
+</Outline>
+<Outline>
+2: Determine the existence of a locally uniformly convergent subsequence from the sequence of normalized harmonic functions u_n, converging to a limit harmonic function u.
+</Outline>
+</Goal>
+<Path>
+1: The compactness of K implies that the sequence of points z_n, where each function u_n vanishes, contains a subsequence that converges to a point z_0 located within K.
+</Path>
+<Path>
+2: Properties of locally uniform convergence, such as those associated with Harnack's theorem or Montel's theorem for harmonic functions (given that harmonic functions with a bounded supremum on compact sets form a normal family), allow for the extraction of a subsequence from u_n that converges uniformly on compact subsets of G to a harmonic function u.
+</Path>
+<Conclusion>
+The compactness of K ensures the existence of a limit point z_0 in K for the sequence of vanishing points. Arguments based on normal families of harmonic functions confirm that a subsequence of the functions u_n converges locally uniformly to a limit harmonic function u.
+</Conclusion>
+</Parallel>
+Also, in any neighborhood around z_0 of radius 1, say B(z_0,1) ∩G, for each n, we have sup_{B(z_n,1)∩ G} |u_n| <1/n. So for the limit function u, in B(z_0,1) ∩G, u is the uniform limit, so sup_{B(z_0,1 - ε)∩G} |u| ≤ lim sup |u_n| < 1/n →0 for each ε>0. Hence, u ≡0 on B(z_0,1)∩ G. But since u is harmonic, and harmonic functions are analytic, then u ≡0 on the connected component containing B(z_0,1)∩G. However, G might not be connected. But K is compact in G. But originally, on K, sup |u|=1. So, unless u not identically zero, this is a contradiction. Wait, so this would lead to u being 0 near z_0 and hence throughout the entire component, but if K lies in that component, then contradicting sup_K |u|=1. Hence, such a sequence u_n cannot exist, implying that the original result holds. Therefore, this argument via contradiction and normal families (Montel's theorem for harmonic functions) gives the existence of the constant C.
+So, to summarize: 1) Assume no such constant exists, so for each n, there is u_n harmonic on G, vanishing at some z_n ∈ K, with sup_K |u_n| > n sup_{Z(u_n) ∩ G } |u_n|. 2) Normalize u_n by setting sup_K |u_n| =1, so that sup_{ Z(u_n) ∩ G } |u_n| < 1/n. 3) Since K is compact, z_n has a convergent subsequence to z_0 ∈ K. By locally uniform convergence (using Harnack's theorem or Montel's theorem for harmonic functions, since harmonic functions with bounded supremum on compacts form a normal family), we have u_n converges uniformly on compact subsets to a harmonic function u. 4) Then, u(z_0)=0 since each u_n(z_n)=0 and z_n→z_0. 5) Moreover, for any ball B(z_0,1)∩G, each neighborhood in it, eventually for large n, z_n is close to z_0, so B(z_n,1 - ε) ⊂ B(z_0,1). Since u_n is harmonic and |u_n| <1/n there, the limit function u must be zero on B(z_0,1)∩G. 6) Therefore, u≡0 on the connected component of G containing z_0.
+Let's think in parallel.
+<Parallel>
+<Goal>
+<Outline>
+1: Determine that the limit function u is identically zero on the compact set K, resulting in sup_K |u| = 0.
+</Outline>
+<Outline>
+2: Determine that the supremum of the limit function u on K is 1, based on normalization and uniform convergence.
+</Outline>
+</Goal>
+<Path>
+1: Since K is a compact subset of G and z_0 is a point in K, the connected component of G containing z_0 (on which the limit function u is identically zero) must encompass K. Therefore, u is zero across the entire set K. This leads to the conclusion that the supremum of |u| over K equals 0.
+</Path>
+<Path>
+2: The normalization condition sup_K |u_n| = 1, combined with the uniform convergence of the sequence u_n to u on the compact set K, implies that the supremum of the limit function |u| over K is 1.
+</Path>
+<Conclusion>
+The analysis yields contradictory findings for the limit function u: its behavior near the zero set suggests sup_K |u| = 0, whereas the normalization and convergence properties indicate sup_K |u| = 1.
+</Conclusion>
+</Parallel>
+Contradiction. Hence, the original assumption is false, and such a constant C exists. Therefore, proved by contradiction using normal families and convergence of harmonic functions.
+</Think>

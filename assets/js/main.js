@@ -327,7 +327,7 @@
   const selector = select('#xml-selector');
   if (selector) {
     // Populate selector
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 25; i++) {
       const option = document.createElement('option');
       option.value = i;
       option.textContent = `Example ${i}`;

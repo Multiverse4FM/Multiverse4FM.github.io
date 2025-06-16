@@ -1901,8 +1901,6 @@ h6 {
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
-  max-height: 80vh;
-  overflow-y: auto;
   background: #292d3e; /* Dark background */
   border: 1px solid #434758;
   color: #dbe2f1; /* Light text */
