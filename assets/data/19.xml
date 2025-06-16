@@ -70,19 +70,19 @@ Let's think in parallel.
 </Outline>
 </Goal>
 <Path>
-1: 1. The equation \(b^{1/2} c^{1/3} d^{1/4} = 36\lambda\) results from setting the partial derivative of the Lagrangian with respect to 'a' (∂L/∂a) to zero.
+1: The equation \(b^{1/2} c^{1/3} d^{1/4} = 36\lambda\) results from setting the partial derivative of the Lagrangian with respect to 'a' (∂L/∂a) to zero.
 </Path>
 <Path>
-2: 2. The equation \(\frac{a}{2} b^{-1/2} c^{1/3} d^{1/4} = 4\lambda\) results from setting the partial derivative of the Lagrangian with respect to 'b' (∂L/∂b) to zero.
+2: The equation \(\frac{a}{2} b^{-1/2} c^{1/3} d^{1/4} = 4\lambda\) results from setting the partial derivative of the Lagrangian with respect to 'b' (∂L/∂b) to zero.
 </Path>
 <Path>
-3: 3. The equation \(\frac{a}{3} b^{1/2} c^{-2/3} d^{1/4} = 4\lambda\) results from setting the partial derivative of the Lagrangian with respect to 'c' (∂L/∂c) to zero.
+3: The equation \(\frac{a}{3} b^{1/2} c^{-2/3} d^{1/4} = 4\lambda\) results from setting the partial derivative of the Lagrangian with respect to 'c' (∂L/∂c) to zero.
 </Path>
 <Path>
-4: 4. The equation \(\frac{a}{4} b^{1/2} c^{1/3} d^{-3/4} = 3\lambda\) results from setting the partial derivative of the Lagrangian with respect to 'd' (∂L/∂d) to zero.
+4: The equation \(\frac{a}{4} b^{1/2} c^{1/3} d^{-3/4} = 3\lambda\) results from setting the partial derivative of the Lagrangian with respect to 'd' (∂L/∂d) to zero.
 </Path>
 <Path>
-5: 5. The constraint equation is given by \(36a + 4b + 4c + 3d = 25\).
+5: The constraint equation is given by \(36a + 4b + 4c + 3d = 25\).
 </Path>
 <Conclusion>
 The application of the Lagrange multiplier method produces a system of five equations: four equations that relate the variables a, b, c, d, and λ, and the original constraint equation.
